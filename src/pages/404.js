@@ -1,8 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import GifImage from '../images/animation_200_ko1qponm.gif'
+import PropTypes from 'prop-types'
+import { Helmet } from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
 
-import Seo from '../components/Seo'
+import GifImage from '../images/animation_200_ko1qponm.gif'
 
 const Container = styled.div`
 	margin: 3rem auto;
@@ -27,3 +29,77 @@ const NotFoundPage = () => {
 }
 
 export default NotFoundPage
+const Seo = ({ description, lang, meta, title }) => {
+	const { site } = useStaticQuery(
+		graphql`
+			query {
+				site {
+					siteMetadata {
+						title
+						description
+					}
+				}
+			}
+		`
+	)
+
+	const metaDescription = description || site.siteMetadata.description
+	const defaultTitle = site.siteMetadata?.title
+
+	return (
+		<Helmet
+			htmlAttributes={{
+				lang,
+			}}
+			title={title}
+			titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+			meta={[
+				{
+					name: `description`,
+					content: metaDescription,
+				},
+				{
+					property: `og:title`,
+					content: title,
+				},
+				{
+					property: `og:description`,
+					content: metaDescription,
+				},
+				{
+					property: `og:type`,
+					content: `website`,
+				},
+				{
+					name: `twitter:card`,
+					content: `summary`,
+				},
+				{
+					name: `twitter:creator`,
+					content: ``,
+				},
+				{
+					name: `twitter:title`,
+					content: title,
+				},
+				{
+					name: `twitter:description`,
+					content: metaDescription,
+				},
+			].concat(meta)}
+		/>
+	)
+}
+
+Seo.defaultProps = {
+	lang: `en`,
+	meta: [],
+	description: ``,
+}
+
+Seo.propTypes = {
+	description: PropTypes.string,
+	lang: PropTypes.string,
+	meta: PropTypes.arrayOf(PropTypes.object),
+	title: PropTypes.string.isRequired,
+}

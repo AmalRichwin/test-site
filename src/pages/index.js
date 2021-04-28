@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import PulseLoader from 'react-spinners/PulseLoader'
-
-import Seo from '../components/Seo'
+import PropTypes from 'prop-types'
+import { Helmet } from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
 
 const Container = styled.div`
 	margin: 3rem auto;
@@ -48,3 +49,78 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+const Seo = ({ description, lang, meta, title }) => {
+	const { site } = useStaticQuery(
+		graphql`
+			query {
+				site {
+					siteMetadata {
+						title
+						description
+					}
+				}
+			}
+		`
+	)
+
+	const metaDescription = description || site.siteMetadata.description
+	const defaultTitle = site.siteMetadata?.title
+
+	return (
+		<Helmet
+			htmlAttributes={{
+				lang,
+			}}
+			title={title}
+			titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+			meta={[
+				{
+					name: `description`,
+					content: metaDescription,
+				},
+				{
+					property: `og:title`,
+					content: title,
+				},
+				{
+					property: `og:description`,
+					content: metaDescription,
+				},
+				{
+					property: `og:type`,
+					content: `website`,
+				},
+				{
+					name: `twitter:card`,
+					content: `summary`,
+				},
+				{
+					name: `twitter:creator`,
+					content: ``,
+				},
+				{
+					name: `twitter:title`,
+					content: title,
+				},
+				{
+					name: `twitter:description`,
+					content: metaDescription,
+				},
+			].concat(meta)}
+		/>
+	)
+}
+
+Seo.defaultProps = {
+	lang: `en`,
+	meta: [],
+	description: ``,
+}
+
+Seo.propTypes = {
+	description: PropTypes.string,
+	lang: PropTypes.string,
+	meta: PropTypes.arrayOf(PropTypes.object),
+	title: PropTypes.string.isRequired,
+}

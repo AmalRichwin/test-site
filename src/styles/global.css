@@ -1,21 +1,6 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Kaushan+Script&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&display=swap');
 html {
-	/* background-color: #0d0d0d; */
-
-	/* background: #ff416c;
-	background: -webkit-linear-gradient(
-		to right,
-		#ff416c,
-		#ff4b2b
-	);
-	background: linear-gradient(
-		to right,
-		#ff416c,
-		#ff4b2b
-	);  */
-	background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+	background-color: #0d0d0d;
 }

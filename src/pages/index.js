@@ -106,18 +106,18 @@ const Seo = ({ description, lang, meta, title }) => {
           content: metaDescription,
         },
       ].concat(meta)}>
-      <script type="application/Id+json">
+      <script type="application/ld+json">
         {`
         {
           "@context": "https://schema.org",
           "@type": "Person",
-          "url": "https://www.spookytech.com",
+          "url": "https://www.amalrichwin.xyz",
           "name": "Amal Richwin K",
-		  "description": "Amal richwin portfolio",
+		      "description": "Amal richwin portfolio",
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+5-601-785-8543",
-            "contactType": "Customer Support"
+            "telephone": "+91-9884286139",
+            "contactType": "Support"
           }
         }
       `}

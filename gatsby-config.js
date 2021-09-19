@@ -1,3 +1,5 @@
+const siteUrl = process.env.URL || `https://www.amalrichwin.xyz`;
+
 module.exports = {
   siteMetadata: {
     title: 'Richie',
@@ -12,6 +14,14 @@ module.exports = {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'G-F5Z9LM577Q',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.amalrichwin.xyz',
+        sitemap: 'https://www.amalrichwin.xyz/sitemap/sitemap-index.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
     'gatsby-plugin-react-helmet',
